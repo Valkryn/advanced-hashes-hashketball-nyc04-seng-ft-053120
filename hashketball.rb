@@ -161,8 +161,7 @@ def team_colors(team_n)
 end
 
 def team_names
-
- game_hash.map { | home_away , team_stats | team_stats[:team_name]   }
+  game_hash.map { | home_away , team_stats | team_stats[:team_name]   }
 end
 
 def player_numbers (team_n)
