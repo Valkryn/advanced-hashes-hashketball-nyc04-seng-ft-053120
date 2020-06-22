@@ -131,8 +131,8 @@ end
 # Write code here
 def num_points_scored(player_n)
   game = game_hash
-  game.each do | home_away , stats |
-    stats[:players].each do | player |
+  game.each do | home_away , team_stats |
+    team_stats[:players].each do | player |
       if player[:player_name] == player_n
         return player[:points]
       end
@@ -142,8 +142,8 @@ end
 
 def shoe_size(player_n)
   game = game_hash
-  game.each do | home_away , stats|
-    stats[:players].each do | player| 
+  game.each do | home_away , team_stats|
+    team_stats[:players].each do | player| 
       if player[:player_name] == player_n
         return player[:shoe]
       end
@@ -153,24 +153,24 @@ end
 
 def team_colors(team_n)
   game = game_hash
-  game.each do | home_away , stats|
-    if stats[:team_name] == team_n
-      return stats[:colors]
+  game.each do | home_away , team_stats|
+    if team_stats[:team_name] == team_n
+      return team_stats[:colors]
     end
   end
 end
 
 def team_names
  game = game_hash
- game.map { | home_away , stats | stats[:team_name]   }
+ game.map { | home_away , team_stats | team_stats[:team_name]   }
 end
 
 def player_numbers (team_n)
   team_numbers =[]
   game = game_hash
-  game.each do | home_away , stats |
-    stats[:players].each do | player |
-      if stats[:team_name] == team_n 
+  game.each do | home_away , team_stats |
+    team_stats[:players].each do | player |
+      if team_stats[:team_name] == team_n 
         team_numbers << player[:number]
       end
     end
@@ -178,10 +178,11 @@ def player_numbers (team_n)
   team_numbers
 end  
 
+
 def player_stats(player_n)
   game = game_hash
-  game.each do | home_away , stats |
-    stats[:players].each do | player |
+  game.each do | home_away , team_stats |
+    team_stats[:players].each do | player |
       if player[:player_name] == player_n 
         return player
       end
@@ -193,8 +194,8 @@ def big_shoe_rebounds
   most_rebounds = 0
   biggest_shoe = 0
   game = game_hash
-  game.each do | home_away , stats |
-    stats[:players].each do | player |
+  game.each do | home_away , team_stats |
+    team_stats[:players].each do | player |
       shoe_size = player[:shoe]
       if shoe_size > biggest_shoe
         biggest_shoe = shoe_size
@@ -204,12 +205,6 @@ def big_shoe_rebounds
   end
   most_rebounds
 end
-
-
-
-
-
-
 
 
 
